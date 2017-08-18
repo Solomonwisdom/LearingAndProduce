@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package name="dang-order" namespace="/order" extends="dang-default">
+        <!--拦截器-->
+        <interceptors>
+            <interceptor name="checklogin"
+                         class="com.whg.web.interceptor.CheckLoginInterceptor" />
+            <interceptor-stack name="checkLoginStack">
+                <interceptor-ref name="checklogin"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <!--结算-->
+        <action name="checkOut"
+                class="com.whg.web.action.order.CheckOutAction">
+            <!--调用拦截器-->
+            <interceptor-ref name="defaultStack"/>
+            <interceptor-ref name="checklogin"/>
+            <result name="login">
+                /user/login_form.jsp
+            </result>
+            <result>
+                /order/order_info.jsp
+            </result>
+        </action>
+        <!--添加表单-->
+        <action name="address"
+                class="com.whg.web.action.order.AddressAction">
+            <result>
+                /order/order_ok.jsp
+            </result>
+        </action>
+        <!--下拉表单-->
+        <action name="select_all" method="all"
+                class="com.whg.web.action.order.SelectAction">
+            <result type="json">
+            </result>
+        </action>
+        <action name="select_findById" method="findById"
+                class="com.whg.web.action.order.SelectAction">
+            <result type="json">
+            </result>
+        </action>
+    </package>
+</struts>

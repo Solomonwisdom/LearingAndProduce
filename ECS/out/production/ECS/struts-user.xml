@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+    <struts>
+    <package name="dang-user" namespace="/user"
+             extends="dang-default">
+        <!--注册-->
+        <action name="regist" class="com.whg.web.action.user.RegisterAction">
+            <result>
+                /user/verify_form.jsp
+            </result>
+        </action>
+        <!--邮箱验证-->
+        <action name="checkemail" class="com.whg.web.action.user.CheckEmailAction">
+            <result type="json">
+                <param name="root">ok</param>
+            </result>
+        </action>
+        <!--登录-->
+        <!-- <action name="main">-->
+        <!-- <result>-->
+        <!-- /main/main.jsp-->
+        <!-- </result>-->
+        <!-- </action>-->
+        <action name="login" class="com.whg.web.action.user.LoginAction" method="execute">
+            <result name="login">
+                /main/main.jsp
+            </result>
+            <result name="lose">
+                /user/login_form.jsp
+            </result>
+            <result name="code">
+                /user/verify_form.jsp
+            </result>
+            <result name="admin">
+                /admin/admin.jsp
+            </result>
+        </action>
+        <!--登出-->
+        <action  name="out" class="com.whg.web.action.user.LoginAction" method="out">
+            <result>
+                <!--/user/login_form.jsp-->
+                /main/main.jsp
+            </result>
+        </action>
+        <!--code验证-->
+        <action name="checkucode" class="com.whg.web.action.user.CheckUCodeAction">
+            <result name="success">
+                /user/register_ok.jsp
+            </result>
+            <result name="faile">
+                /user/verify_form.jsp
+            </result>
+        </action>
+    </package>
+    <!--验证码-->
+    <package name="demo" extends="dang-default">
+        <action name="imagecode"
+                class="com.whg.web.action.ImageAction">
+            <result name="success" type="stream">
+                <param name="inputName">imageStream</param>
+            </result>
+        </action>
+        <action name="checkcode"
+                class="com.whg.web.action.CheckCodeAction">
+            <result type="json">
+                <param name="root">ok</param>
+            </result>
+        </action>
+    </package>
+</struts>

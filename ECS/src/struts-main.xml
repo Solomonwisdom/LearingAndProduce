@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+    <struts>
+    <package name="dang-main" namespace="/main" extends="dang-default">
+        <!--新书列表-->
+        <action name="findNew"
+                class="com.whg.web.action.main.NewProductAction">
+            <result>
+                /main/new.jsp
+            </result>
+        </action>
+        <!--书籍类型-->
+        <action name="findCategory"
+                class="com.whg.web.action.main.CategoryAction">
+            <result>
+                /main/category.jsp
+            </result>
+        </action>
+        <!--随机列表-->
+        <action name="findBook"
+                class="com.whg.web.action.main.BookAction">
+            <result>
+                /main/recommend.jsp
+            </result>
+        </action>
+        <!--热销列表-->
+        <action name="findHot"
+                class="com.whg.web.action.main.HotAction">
+            <result>
+                /main/hot.jsp
+            </result>
+        </action>
+        <!--新书热销列表-->
+        <action name="findNewHot"
+                class="com.whg.web.action.main.NewHotAction">
+            <result>
+                /main/newHot.jsp
+            </result>
+        </action>
+        <!--分类浏览-->
+        <action name="bookList"
+                class="com.whg.web.action.main.BookListAction">
+            <param name="size">3</param>
+            <result>
+                /main/book_list.jsp
+            </result>
+        </action>
+        <!--查找购买列表-->
+        <!--<action name="bookList"-->
+        <!--class="com.whg.web.action.main.BookListAction">-->
+        <!--<param name="size">3</param>-->
+        <!--<result>-->
+        <!--/main/book_list.jsp-->
+        <!--</result>-->
+        <!--</action>-->
+
+    </package>
+
+    </struts>

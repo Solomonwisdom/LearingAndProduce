@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="dang-admin" namespace="/admin" extends="dang-default">
+        <!--拦截器-->
+        <interceptors>
+            <interceptor name="checkadminlogin"
+                         class="com.whg.web.interceptor.CheckAdminLoginInterceptor" />
+            <interceptor-stack name="checkLoginStack">
+                <interceptor-ref name="checkadminlogin"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <action name="book_add" method="add" class="com.whg.web.action.admin.BookAction">
+            <!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+            <interceptor-ref name="defaultStack" />
+            <result name="success" type="redirectAction">
+                bookList
+            </result>
+            <result name="input">
+                /admin/admin.jsp
+            </result>
+        </action>
+        <action name="book_update" method="update" class="com.whg.web.action.admin.BookAction">
+            <interceptor-ref name="fileUpload">
+                <!-- 文件过滤 -->
+                <param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+                <!-- 文件大小, 以字节为单位 -->
+                <param name="maximumSize">1025956</param>
+            </interceptor-ref>
+            <!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+            <interceptor-ref name="defaultStack" />
+            <result name="success" type="redirectAction">
+                bookList
+            </result>
+            <result name="input">
+                /admin/admin.jsp
+            </result>
+        </action>
+        <action name="book_detail" class="com.whg.web.action.admin.BookAction" method="detail">
+            <result>
+                /admin/book_detail.jsp
+            </result>
+        </action>
+        <action name="book_delete" class="com.whg.web.action.admin.BookAction" method="delete">
+            <result type="redirectAction">
+                bookList
+            </result>
+        </action>
+        <action name="bookList" class="com.whg.web.action.admin.ProductListAction">
+            <result>
+                /admin/product_list.jsp
+            </result>
+        </action>
+        <action name="userList" class="com.whg.web.action.admin.UserListAction">
+            <result>
+                /admin/user_list.jsp
+            </result>
+        </action>
+        <action name="user_del" class="com.whg.web.action.admin.UserDelAction">
+            <result type="redirectAction">
+                userList
+            </result>
+        </action>
+        <action name="item_list" class="com.whg.web.action.admin.ItemListAction">
+            <result>
+                /admin/order_list.jsp
+            </result>
+        </action>
+    </package>
+</struts>

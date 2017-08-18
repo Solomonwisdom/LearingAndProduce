@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package name="dang-cart" namespace="/cart" extends="dang-default">
+        <!--购买-->
+        <action name="buy"
+                class="com.whg.web.action.cart.BuyAction">
+            <result type="json">
+                <param name="root">ok</param>
+            </result>
+        </action>
+        <!--购买列表-->
+        <action name="cartList"
+                class="com.whg.web.action.cart.CartListAction">
+            <result>
+                /cart/cart_list.jsp
+            </result>
+        </action>
+        <!--修改列表-->
+        <action name="cart_delete" method="delete"
+                class="com.whg.web.action.cart.ChangeAction">
+            <result type="redirectAction">
+                cartList
+            </result>
+        </action>
+        <action name="cart_recovery" method="recovery"
+                class="com.whg.web.action.cart.ChangeAction">
+            <result type="redirectAction">
+                cartList
+            </result>
+        </action>
+        <action name="cart_modify" method="modify"
+                class="com.whg.web.action.cart.ChangeAction">
+            <result type="redirectAction">
+                cartList
+            </result>
+        </action>
+        <!--查找购买列表-->
+        <action name="findAll"
+                class="com.whg.web.action.cart.FindItemAction">
+            <result>
+                /cart/myDang.jsp
+            </result>
+        </action>
+
+    </package>
+</struts>
