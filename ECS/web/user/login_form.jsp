@@ -14,9 +14,6 @@
 	<link rel="stylesheet" href="https://cdn.bootcss.com/foundation/5.5.3/css/foundation.min.css">
 	<link rel="stylesheet" href="http://static.runoob.com/assets/foundation-icons/foundation-icons.css">
 	<script src="https://cdn.static.runoob.com/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
-	<!--<link ref="stylesheet" href="../css/foundation.min.css" type="text/css"/>-->
-	<!--<link ref="stylesheet" href="../css/foundation-icons.css" type="text/css"/>-->
-	<!--<script src="../js/vendor/foundation.min.js" type="text/javascript"></script>-->
 	<script src="../js/vendor/jquery.js" type="text/javascript"></script>
 	<style>
 		input{vertical-align: middle; font-size:14px}
