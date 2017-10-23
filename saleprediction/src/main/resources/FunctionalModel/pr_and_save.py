@@ -34,7 +34,7 @@ def work_for_pr(day_id):
     rankData = sorted(npr, key = lambda x: x[1], reverse=True)
     judem = np.zeros((len(idx),), dtype=bool)
     rank = []
-    print("pr 1 end")
+    # print("pr 1 end")
     for j in range(len(rankData)):
         nbr = rankData[j][0]
         rank.append((day_id, j+1, nbr, 0, 0, 0, 0, rankData[j][1]))
@@ -42,14 +42,14 @@ def work_for_pr(day_id):
         #     len(usales[usales['buy_nbr']==nbr]), len(nsales), rankData[j][1]))
         judem[idx[nbr]] = True
     j = len(rankData)
-    print("rank 1 end 2 start")
+    # print("rank 1 end 2 start")
     for (k,v) in idx.items():
         if judem[v] == False:
             rank.append((day_id, j+1, k, 0, 0, 0, 0, 0.0))
             j += 1
     return rank
 
-    
+
 def out_to_csv(ranks):
     headers = ['day_id','rank','nbr','sum_cnt','sum_round','indeg','outdeg','pagerank_value']
     f = open(os.path.join(BASE_DIR, 'pr.csv'),'w')
@@ -72,7 +72,7 @@ def pr():
     pool = Pool(mlp.cpu_count()*8)
     ranks = pool.map(work_for_pr, range(1, length+1))
     out_to_csv(ranks)
-    
+
 def main():
     pr()
 

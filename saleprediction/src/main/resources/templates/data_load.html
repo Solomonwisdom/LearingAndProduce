@@ -161,6 +161,7 @@
 </div>
 
 <script th:inline="javascript">
+    /*<![CDATA[*/
     $(document).ready(function () {
         var process = [[${process}]];
         if (process === "wait") {
@@ -171,7 +172,7 @@
             alert("输入不合法！！");
         }
     });
+    /*]]>*/
 </script>
-
 </body>
 </html>

@@ -1,5 +1,5 @@
 #!/Users/wanghaogang/Public/anaconda2/bin
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-  
 import os
 import sys
 from ar_predictions import ar_predict

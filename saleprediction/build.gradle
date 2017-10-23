@@ -31,7 +31,7 @@ war {
 
 
 dependencies {
-	compile('net.sf.json-lib:json-lib:jdk15:2.4')
+	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.39'
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

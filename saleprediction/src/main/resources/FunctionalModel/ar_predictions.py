@@ -53,7 +53,7 @@ def evaluate_ar_model(X):
     for t in range(predict_length):
         yhat = predict(coef, history)
         predictions.append(yhat)
-        if t < test.size():
+        if t < test.size:
             obs = test[t]
         else:
             obs = yhat

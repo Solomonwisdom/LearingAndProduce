@@ -62,10 +62,10 @@
                     <a th:href="@{/uploadForm}"><i class="fa fa-desktop"></i> 上传数据</a>
                 </li>
                 <li>
-                    <a class="active-menu" th:href="@{/data_summary}"><i class="fa fa-dashboard"></i> 数据概览</a>
+                    <a th:href="@{/data_summary}"><i class="fa fa-dashboard"></i> 数据概览</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-sitemap"></i> 数据可视化<span class="fa arrow"></span></a>
+                    <a class="active-menu" href="#"><i class="fa fa-sitemap"></i> 数据可视化<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a th:href="@{/data_marketrank}">市场地位分析</a>
@@ -127,8 +127,8 @@
                             <script th:inline="javascript">
                                 /*<![CDATA[*/
                                 $(document).ready(function() {
-                                    var json = [[${process}]];
-                                    if(json.isString())
+                                    var json = [[${json}]];
+                                    if(json!==null && typeof json === 'string')
                                         if(json !== 'none') {
                                             //初始化xAxis[0]的data
                                             //初始化series[0]的data
@@ -138,13 +138,13 @@
                                             option.series[1].data = [];
                                             option.series[2].data = [];
                                             option.xAxis[0].data = [];
-                                            var len=length(result);
+                                            var len=result.length;
                                             for (var i=0; i<len; i++) {
 //                                                console.log(result[i]["rank"]);
-                                                option.xAxis[0].data.push(result[i]["day_id"]);
+                                                option.xAxis[0].data.push(result[i]["dayId"]);
                                                 option.series[0].data.push(result[i]["rank"]);
-                                                option.series[1].data.push(result[i]["sum_round"]);
-                                                option.series[2].data.push(result[i]["sum_cnt"]);
+                                                option.series[1].data.push(result[i]["sumRound"]);
+                                                option.series[2].data.push(result[i]["sumCnt"]);
                                             }
                                         }
                                     myChart.setOption(option);
@@ -277,7 +277,7 @@
                                     <tr th:each="agent : ${agentList}" class="odd gradeX">
                                         <td th:text="${agent.dayId}">1</td>
                                         <td th:text="${agent.rank}">1</td>
-                                        <td th:text="agent.sumCnt">50</td>
+                                        <td th:text="${agent.sumCnt}">50</td>
                                         <td th:text="${agent.sumRound}" class="center">20000</td>
                                         <td th:text="${agent.indeg}" class="center">20</td>
                                         <td th:text="${agent.outdeg}" class="center">30</td>
@@ -316,7 +316,8 @@
 </script>
 <!-- Custom Js -->
 <script th:src="@{/assets/js/custom-scripts.js}"></script>
-<script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
     $(document).ready(function () {
         var process = [[${process}]];
         if (process === "wait") {
@@ -328,6 +329,7 @@
             alert("输入不合法或该代理商不存在！！");
         }
     });
+    /*]]>*/
 </script>
 </body>
 </html>

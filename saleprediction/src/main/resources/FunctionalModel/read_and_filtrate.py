@@ -46,14 +46,14 @@ def ins_process(sales_path):
     parts = np.zeros((5,), dtype=int)
     limit = size/9
     # 遍历数据表格，为每个交易对设置标号，并产生了对应的时间序列
-    for record in sales.values:  
+    for record in sales.values:
         if record[1] not in juds:
             objects.append(record[1])
             juds.add(record[1])
         if(record[2]) not in juds:
             objects.append(record[2])
             juds.add(record[2])
-        if id_for_pairs.has_key((record[1], record[2])):
+        if (record[1], record[2]) in id_for_pairs:
             idp = id_for_pairs[(record[1], record[2])]
         else:
             id_for_pairs[(record[1], record[2])] = idcnt
@@ -84,7 +84,7 @@ def ins_process(sales_path):
         validate.append(pair)
         cnts.append(ocnts[idp])
         rounds.append(orounds[idp])
-            
+
 
     rounds = np.array(rounds)
     cnts = np.array(cnts)

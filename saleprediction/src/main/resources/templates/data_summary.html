@@ -266,12 +266,14 @@
 <script type="text/javascript" th:src="@{/assets/js/chart.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/chartjs.js}"></script>
 <script th:inline="javascript">
+    /*<![CDATA[*/
     $(document).ready(function () {
         var process = [[${process}]];
         if (process === "wait") {
             alert("请等待后台进程完成处理！");
         }
     });
+    /*]]>*/
 </script>
 </body>
 </html>

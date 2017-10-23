@@ -4,7 +4,7 @@ import com.cumt.whg.saleprediction.model.Agent;
 import com.cumt.whg.saleprediction.thread.PythonThread;
 import com.cumt.whg.saleprediction.util.FileUtils;
 import com.cumt.whg.saleprediction.util.PythonData;
-import net.sf.json.JSONArray;
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
@@ -26,7 +26,7 @@ public class MainController {
     public static String basePath = null;
     public static String uploadPath = null;
     public static String functionalModelPath = null;
-    static {
+    private static void checkDir() {
         if(basePath==null) {
 //            basePath = request.getServletContext().getRealPath("/");
             basePath = ClassUtils.getDefaultClassLoader().getResource("").getPath();
@@ -37,8 +37,14 @@ public class MainController {
                 new File(uploadPath).mkdir();
             }
             functionalModelPath = basePath + "FunctionalModel";
+        } else {
+            if(!new File(uploadPath).isDirectory()) {
+                new File(uploadPath).mkdir();
+            }
+            functionalModelPath = basePath + "FunctionalModel";
         }
     }
+    static {checkDir();}
 
     @RequestMapping(value = {"/uploadForm","/","/predictForm"})
     public ModelAndView uploadForm(Model model) {
@@ -120,7 +126,8 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("data_load");
         modelAndView.addAllObjects(model.asMap());
-        FileUtils.deleteAllFilesOfDir(new File(uploadPath));
+        if(uploadPath!=null) FileUtils.deleteAllFilesOfDir(new File(uploadPath));
+        checkDir();
         File destFile = new File(uploadPath + File.separator + file.getOriginalFilename());
         file.transferTo(destFile);
         modelAndView.addObject("File", "upload");
@@ -222,8 +229,8 @@ public class MainController {
         }
         modelAndView.addObject("agentList", agentList);
         //将List对象转化为JSON对象
-        JSONArray json = JSONArray.fromObject(agentList);
-        modelAndView.addObject("json", json.toString());
+        String jsonString = JSONArray.toJSONString(agentList);
+        modelAndView.addObject("json", jsonString);
         return modelAndView;
     }
 

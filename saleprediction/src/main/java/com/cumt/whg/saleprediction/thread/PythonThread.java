@@ -8,9 +8,9 @@ import java.io.InputStreamReader;
  * Created by wanghaogang on 2017/7/1.
  */
 public class PythonThread extends Thread{
-    private String pythonPath = "python";
-//    private String pythonPath = "/root/anaconda2/bin/python";
-//    private String pythonPath = "/Users/wanghaogang/Public/anaconda2/bin/python";
+    private static final String pythonPath = "python";
+//    private static final String pythonPath = "/root/anaconda2/bin/python";
+//    private static final String pythonPath = "/Users/wanghaogang/Public/anaconda2/bin/python";
     private String pyPath = null;
     private String arguments = null;
     public PythonThread(String pyPath) {
@@ -24,7 +24,7 @@ public class PythonThread extends Thread{
         try {
             String command = pythonPath+" "+pyPath;
             String s;
-            if(arguments!=null&&arguments!="") {
+            if(arguments!=null&&!arguments.equals("")) {
                 command+=" "+arguments;
             }
             System.out.println(command);
