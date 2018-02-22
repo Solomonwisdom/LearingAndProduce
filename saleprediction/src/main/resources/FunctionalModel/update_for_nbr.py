@@ -1,4 +1,4 @@
-#!/Users/wanghaogang/Public/anaconda2/bin
+#!/Users/wanghaogang/Applications/anaconda3/bin
 # -*- coding: utf-8 -*-  
 import os
 import sys
@@ -53,7 +53,7 @@ def update_nbr(j):
     judge[j-1][aid] = True
     return ','.join([str(i) for i in record])
 
-pool = Pool(mlp.cpu_count()*8)
+pool = Pool(mlp.cpu_count()*4)
 content = pool.map(update_nbr, range(1, endDay+1))
 np.save(os.path.join(BASE_DIR, 'judge.npy'), judge)
 agents_details.to_hdf(os.path.join(BASE_DIR, 'agents_detail.h5'), 'df')

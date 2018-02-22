@@ -1,4 +1,4 @@
-#!/Users/wanghaogang/Public/anaconda2/bin
+#!/Users/wanghaogang/Applications/anaconda3/bin
 # -*- coding: utf-8 -*-  
 import os
 import sys
@@ -49,7 +49,7 @@ def update_day(agent_rank):
 
 
 
-pool = Pool(mlp.cpu_count()*8)
+pool = Pool(mlp.cpu_count()*4)
 content = pool.map(update_day, range(1, 501))
 np.save(os.path.join(BASE_DIR, 'judge.npy'), judge)
 daily_res = open(os.path.join(UPLOADS_DIR, 'daily_res.txt'), 'w')

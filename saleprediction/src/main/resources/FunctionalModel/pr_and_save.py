@@ -1,4 +1,4 @@
-#!/Users/wanghaogang/Public/anaconda2/bin
+#!/Users/wanghaogang/Applications/anaconda3/bin
 # -*- coding: utf-8 -*-
 import os
 import multiprocessing as mlp
@@ -69,7 +69,7 @@ def pr():
     sales = pd.read_hdf(sales_path, 'df')
     predict_path = os.path.join(os.path.dirname(sales_path), 'predict_sales.csv')
     predict_sales = pd.read_csv(filepath_or_buffer=predict_path, header=0)
-    pool = Pool(mlp.cpu_count()*8)
+    pool = Pool(mlp.cpu_count()*4)
     ranks = pool.map(work_for_pr, range(1, length+1))
     out_to_csv(ranks)
 

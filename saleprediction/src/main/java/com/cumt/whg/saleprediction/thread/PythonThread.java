@@ -11,7 +11,7 @@ public class PythonThread extends Thread{
     private static final String pythonPath = "python";
 //    private static final String pythonPath = "/root/anaconda2/bin/python";
 //    private static final String pythonPath = "/Users/wanghaogang/Public/anaconda2/bin/python";
-    private String pyPath = null;
+    private String pyPath;
     private String arguments = null;
     public PythonThread(String pyPath) {
         this.pyPath = pyPath;

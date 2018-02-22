@@ -1,4 +1,4 @@
-#!/Users/wanghaogang/Public/anaconda2/bin
+#!/Users/wanghaogang/Applications/anaconda3/bin
 # -*- coding: utf-8 -*-
 import os
 from statsmodels.tsa.ar_model import AR
@@ -78,7 +78,7 @@ def output_to_csv(new_cnts, new_sales):
 
 
 def ar_predict():
-    pool = Pool(mlp.cpu_count()*8)
+    pool = Pool(mlp.cpu_count()*4)
     new_cnts = pool.map(evaluate_ar_model, cnts)
     new_sales = pool.map(evaluate_ar_model, rounds)
 

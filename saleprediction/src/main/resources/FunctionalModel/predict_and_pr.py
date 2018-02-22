@@ -1,4 +1,4 @@
-#!/Users/wanghaogang/Public/anaconda2/bin
+#!/Users/wanghaogang/Applications/anaconda3/bin
 # -*- coding: utf-8 -*-  
 import os
 import sys
