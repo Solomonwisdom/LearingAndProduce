@@ -109,7 +109,7 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <div th:if="${File != 'upload'}">
+                            <div th:if="${not #strings.equals(File,'upload')}">
                                 <div id="submitFile" style="display:block">
                                     <form th:action="@{/upload}" enctype="multipart/form-data" method="post">
                                         <div class="form-group">
